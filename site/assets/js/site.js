@@ -42,3 +42,24 @@ document.querySelectorAll('[data-andamio]').forEach(b=>b.onclick=()=>preguntarPo
 document.getElementById('anio').textContent=new Date().getFullYear();
 
 (function(){const sel=document.getElementById('estructura'),otro=document.querySelector('.otro-elemento');if(!sel||!otro)return;const inp=otro.querySelector('input');sel.addEventListener('change',()=>{const o=sel.value==='Otros';otro.hidden=!o;inp.required=o;if(o)inp.focus()})})();
+
+// Menú de navegación en el encabezado móvil.
+const mobileMenuButton = document.querySelector('.mobile-menu-toggle');
+if (mobileMenuButton) {
+  const mobileMenu = document.getElementById(mobileMenuButton.getAttribute('aria-controls'));
+  function setMobileMenu(open) {
+    mobileMenuButton.setAttribute('aria-expanded', String(open));
+    mobileMenuButton.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  }
+  mobileMenuButton.addEventListener('click', () => setMobileMenu(mobileMenuButton.getAttribute('aria-expanded') !== 'true'));
+  mobileMenu.addEventListener('click', event => {
+    if (event.target.closest('a')) setMobileMenu(false);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mobileMenuButton.getAttribute('aria-expanded') === 'true') {
+      setMobileMenu(false);
+      mobileMenuButton.focus();
+    }
+  });
+  matchMedia('(max-width: 900px)').addEventListener('change', () => setMobileMenu(false));
+}

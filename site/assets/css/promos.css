@@ -28,3 +28,30 @@
   .promo-dots button.on{background:#fff}
 }
 @media(prefers-reduced-motion:reduce){.promo-card a{transition:none}}
+
+/* La cabecera y el carrusel de Buen Fin se condensan en celular. */
+.promo-title-mobile{display:none}
+.promo-terms{display:none}
+@media(max-width:900px){
+  .promo{padding:18px 0 14px}
+  .promo .wrap{padding-inline:18px}
+  .promo-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.22fr);text-align:left;gap:12px;max-width:400px;margin-bottom:8px}
+  .promo-logo{width:min(100%,140px);margin-inline:auto;padding:0}
+  .promo .eyebrow{font-size:10px;margin-bottom:5px}
+  .promo-title-desktop{display:none}
+  .promo-title-mobile{display:block;font-size:clamp(20px,5.5vw,29px);line-height:1.05}
+  .promo-title-mobile strong{display:block;font-size:clamp(42px,11vw,61px);letter-spacing:-.06em}
+  .promo-text .promo-terms-desktop{display:none}
+  .promo-terms{display:block;color:#c9d3dc;margin:8px auto 11px;max-width:420px;text-align:center;font-size:12px;line-height:1.4}
+  .promo-track{position:relative;gap:0;max-width:356px;border-radius:8px;padding-bottom:0}
+  .promo-card{flex:0 0 100%;min-width:0}
+  .promo-card img{aspect-ratio:1;object-fit:contain}
+  .promo-card a:hover,.promo-card a:focus-visible{transform:none}
+  .promo-card a:focus-visible{outline-offset:-3px}
+  .promo-cta{padding:9px 12px;min-height:40px}
+  .promo-dots{gap:0;margin-top:2px}
+  .promo-dots button,.promo-dots button.on{display:grid;place-items:center;width:44px;height:44px;background:none}
+  .promo-dots button::before{content:'';width:9px;height:9px;border-radius:50%;background:#ffffff80}
+  .promo-dots button.on::before{width:12px;height:12px;background:#fff}
+  .promo-legal{margin-top:3px;font-size:11px}
+}
