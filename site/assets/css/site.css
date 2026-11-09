@@ -83,3 +83,6 @@ section[id]{scroll-margin-top:130px}
 .quote-compact .check input{width:20px;height:20px;min-height:0;flex:none;margin:1px 0 0;padding:0}
 .quote-compact .btn{width:100%;justify-content:center}
 .contact-grid>#quote{align-self:start}
+
+/* Acceso al blog también en celular. */
+@media(max-width:900px){.menu a.blog-link{display:inline-flex;margin-right:18px}}
