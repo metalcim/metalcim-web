@@ -1,0 +1,24 @@
+# MetalCim - sitio estático (HostGator / Apache)
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Dejar libre la validación del certificado HTTPS
+RewriteRule ^\.well-known/ - [L]
+
+# Forzar HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Páginas del WordPress viejo -> inicio
+RewriteRule ^(shop|contact|about|testimonials|cart|checkout|my-account|product)(/.*)?$ https://%{HTTP_HOST}/ [L,R=301,QSD]
+
+# Archivos del WordPress viejo -> ya no existen (410)
+RewriteRule ^wp- - [G,L]
+
+# Archivo interno de la publicación automática: no es público
+RewriteRule ^\.ftp-deploy-sync-state\.json$ - [F,L]
+</IfModule>
