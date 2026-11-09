@@ -19,8 +19,14 @@
 
   const carrusel = () => track.scrollWidth > track.clientWidth + 4;
   const actual = () => Math.round(track.scrollLeft / (cards[0].offsetWidth || 1));
-  function go(i) { track.scrollTo({ left: cards[i].offsetLeft - track.offsetLeft, behavior: 'smooth' }); }
-  function marcar() { [...dots.children].forEach((d, i) => d.classList.toggle('on', i === actual())); }
+  function go(i) { track.scrollTo({ left: cards[i].offsetLeft - track.offsetLeft, behavior: quieto ? 'instant' : 'smooth' }); }
+  function marcar() {
+    const index = actual();
+    [...dots.children].forEach((dot, i) => {
+      dot.classList.toggle('on', i === index);
+      dot.setAttribute('aria-current', String(i === index));
+    });
+  }
   track.addEventListener('scroll', () => requestAnimationFrame(marcar), { passive: true });
   marcar();
 
